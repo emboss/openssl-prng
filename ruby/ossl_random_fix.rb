@@ -42,8 +42,8 @@ module OpenSSL::Random
     def add_urandom
       begin
         OpenSSL::Random.load_random_file('/dev/urandom')
-      rescue Errno::ENOENT
-        # not available, reraise if mandatory for you
+      rescue OpenSSL::Random::RandomError
+        # probably not available, reraise if mandatory for you
       end
     end
 
